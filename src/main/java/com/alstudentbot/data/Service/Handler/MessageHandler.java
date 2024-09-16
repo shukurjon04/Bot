@@ -20,7 +20,7 @@ public class MessageHandler {
                     .text(message.getText())
                     .build();
         } else if (message.hasPhoto()) {
-            return bot.execute(SendPhoto.builder()
+            bot.execute(SendPhoto.builder()
                             .chatId(message.getChatId())
                             .photo(new InputFile(String.valueOf(message.getPhoto())))
                     .build());
