@@ -14,6 +14,7 @@ import com.alstudentbot.data.Telegram.Bot;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 @Service
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -46,7 +47,11 @@ public class UpdateDispacher {
                     return commandHandler.answer(message,bot);
                 }
             }
-            return messageHandler.answer(message,bot);
+            try {
+                return messageHandler.answer(message,bot);
+            } catch (TelegramApiException e) {
+                throw new RuntimeException(e);
+            }
         }
         log.info("Undupported update "+update.toString());
         return null;
