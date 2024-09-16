@@ -25,6 +25,7 @@ public class MessageHandler {
                             .photo(new InputFile(String.valueOf(message.getPhoto())))
                     .build());
         }
+        return null;
     }
 
 }
